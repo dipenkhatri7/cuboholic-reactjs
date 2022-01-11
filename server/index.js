@@ -32,9 +32,15 @@ app.get('/', (req, res) => {
         }
         return scramble;
     }
-    function scrambleDrawer() {
-        let cube_size;
-        let move;
+    function scrambleDrawer(cube_size) {
+        
+        function makeArray(a, b) {
+            var arr = new Array(a)
+            for (var i = 0; i < a; i++)
+                arr[i] = new Array(b)
+            return arr
+        }
+
         let w = 1;
         let g = 2;
         let r = 3;
@@ -42,15 +48,15 @@ app.get('/', (req, res) => {
         let o = 5;
         let y = 6;
 
-        let top_cube;
-        let front_cube;
-        let right_cube;
-        let back_cube;
-        let left_cube;
-        let bottom_cube;
+        let top_cube = makeArray(cube_size, cube_size);
+        let front_cube = makeArray(cube_size, cube_size);
+        let right_cube = makeArray(cube_size, cube_size);
+        let back_cube = makeArray(cube_size, cube_size);
+        let left_cube = makeArray(cube_size, cube_size);
+        let bottom_cube = makeArray(cube_size, cube_size);
 
         function swap_rows(x, y, which_row) {
-            let temp;
+            let temp =new Array(cube_size);
             for (let i = 0; i < cube_size; i++) {
                 temp[i] = x[which_row][i];
                 x[which_row][i] = y[which_row][i];
@@ -59,7 +65,7 @@ app.get('/', (req, res) => {
         }
 
         function swap_column(x, y, which_column_x, which_column_y, n) {
-            let temp;
+            let temp =new Array(cube_size);
             for (let i = 0; i < cube_size; i++) {
                 if (n == 1) {
                     temp[i] = x[cube_size - i - 1][which_column_x];
@@ -75,7 +81,7 @@ app.get('/', (req, res) => {
 
         function rotate_anti_clockwise(x) {
             let n = cube_size;
-            let temp1;
+            let temp1 = makeArray(cube_size,cube_size);
             for (let i = 0; i < n; ++i) {
                 for (let j = 0; j < n; ++j) {
                     temp1[i][j] = x[j][n - i - 1];
@@ -90,7 +96,7 @@ app.get('/', (req, res) => {
 
         function rotate_clockwise(x) {
             let n = cube_size;
-            let temp1;
+            let temp1 = makeArray(cube_size, cube_size);
             for (let i = 0; i < n; ++i) {
                 for (let j = 0; j < n; ++j) {
                     temp1[i][j] = x[n - j - 1][i];
@@ -104,8 +110,8 @@ app.get('/', (req, res) => {
         }
 
         function swap_column_to_row(x, y, which_column, which_row, n) {
-            let temp1;
-            let temp2;
+            let temp1 =new Array(cube_size);
+            let temp2 =new Array(cube_size);
             for (let i = 0; i < cube_size; i++) {
                 if (n == 1) {
                     temp1[i] = x[cube_size - i - 1][which_column];
@@ -123,7 +129,7 @@ app.get('/', (req, res) => {
         }
 
         function initializing(color) {
-            let cube;
+            let cube = makeArray(cube_size, cube_size);
             for (let i = 0; i < cube_size; i++) {
                 for (let j = 0; j < cube_size; j++) {
                     cube[i][j] = color;
@@ -178,24 +184,24 @@ app.get('/', (req, res) => {
         function print_array(cube) {
             for (let i = 0; i < cube_size; i++) {
                 for (let j = 0; j < cube_size; j++) {
-                    console.log(cube[i][j] + "\t");
+                    console.log(cube[i][j] + " ");
                 }
                 console.log("\n");
             }
         }
 
         function print_cube() {
-           console.log("topface\n");
+            console.log("topface\n");
             print_array(top_cube);
-           console.log("frontface\n");
+            console.log("frontface\n");
             print_array(front_cube);
-           console.log("rightface\n");
+            console.log("rightface\n");
             print_array(right_cube);
-           console.log("backface\n");
+            console.log("backface\n");
             print_array(back_cube);
-           console.log("leftface\n");
+            console.log("leftface\n");
             print_array(left_cube);
-           console.log("bottomface\n");
+            console.log("bottomface\n");
             print_array(bottom_cube);
         }
 
@@ -212,7 +218,10 @@ app.get('/', (req, res) => {
         U();
         L();
         print_cube();
+
+        res.send('here')
     }
+    scrambleDrawer(3);
 })
 
 app.listen(5000, () => {
