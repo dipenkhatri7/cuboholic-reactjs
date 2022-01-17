@@ -293,6 +293,99 @@ export default function Timer() {
   }
 
 
+  var Container = new Object();
+  Container.holdTime = 500;
+  Container.decimal = 3;
+  Container.disableTime = false;
+  var timeElement = useRef();
+  function pad(num) {
+    if (num < 10) { return "0" + num; }
+    return num;
+  }
+  function timeFormater(ms){
+    if(typeof(ms)!="number"){
+      return false;
+    }
+    ms= Math.round(ms);
+    var hourMinSec =[];
+    var minInMs = 1000*60;
+    var hourInMs = minInMs *60;
+    var hours =Math.floor(ms/hourInMs);
+    ms -= (hours * hourInMs);
+    var min = Math.floor(ms / minInMs);
+    ms -= ( min * minInMs );
+    var sec = ms / 1000;
+    sec = sec.toFixed(Container.decimal);
+    if (hours > 0) {
+      hourMinSec.push(hours);
+      min = pad(min); sec = pad(sec);
+      hourMinSec.push(min);
+      hourMinSec.push(sec);
+    }
+    else if (min > 0) {
+      hourMinSec.push(min);
+      sec = pad(sec);
+      hourMinSec.push(sec);
+   }
+    else {
+      hourMinSec.push(sec);
+    }
+    return hourMinSec.join(":");
+  }
+  function Timer(){
+    this.start = 0;
+    this.end = 0;
+    this.running = false;
+    this.started = function(){
+      this.running = true;
+      this.start = (new Date()).getTime();
+    }
+    this.stopped = function() {
+      this.running = false;
+      this.end = (new Date()).getTime();
+    }
+    this.presentTime = function() {
+      if ( !this.running ) {
+          return this.end - this.start;
+      }
+    return ( (new Date()).getTime() - this.start );
+    }
+  }
+  var cubeTime = new Timer();
+  var red = "#e74c3c";
+  var green = "#2ecc71";
+  var held = false;
+  var heldTimeout;
+  var justStop = false;
+  var updateTime;
+  document.onkeydown = onKeyDown;
+  document.onkeyup = function(e){
+    this.onkeydown =onKeyDown;
+    timeElement.style.color = "#f2faff";
+    clearTimeout(heldTimeout);
+    if(!cubeTime.running && !justStop && held){
+      held = false;
+      startTime();
+    }
+    else {
+      justStop =false;
+    }
+  }
+  function startTime(){
+    cubeTime.started();
+    updateTime = setInterval( function() {
+      updateTimeElement(timeFormater(cubeTime.presentTime()));
+    }, 1);
+  }
+  function updateTimeElement(formatted){
+    timeElement.innerHTML = formatted;
+  }
+  function stopTime(){
+    cubeTime.stopped();
+    justStop = true;
+  }
+
+
   return (
     <div className="timer">
       <h1 className="time"><span className="time-s">00</span><span>:</span><span className="time-ms">00</span></h1>
