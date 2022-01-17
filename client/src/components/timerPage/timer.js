@@ -150,24 +150,24 @@ export default function Timer() {
       }
 
       function D() {
-        swap_rows(front_cube, left_cube, (cube_size - 1));
-        swap_rows(front_cube, back_cube, (cube_size - 1));
         swap_rows(front_cube, right_cube, (cube_size - 1));
+        swap_rows(front_cube, back_cube, (cube_size - 1));
+        swap_rows(front_cube, left_cube, (cube_size - 1));
         rotate_clockwise(bottom_cube);
       }
 
       function R() {
-        swap_column(front_cube, bottom_cube, (cube_size - 1), (cube_size - 1), 0);
-        swap_column(front_cube, back_cube, (cube_size - 1), 0, 1);
         swap_column(front_cube, top_cube, (cube_size - 1), (cube_size - 1), 0);
+        swap_column(front_cube, back_cube, (cube_size - 1), 0, 1);
+        swap_column(front_cube, bottom_cube, (cube_size - 1), (cube_size - 1), 0);
 
         rotate_clockwise(right_cube);
       }
 
       function L() {
-        swap_column(front_cube, top_cube, 0, 0, 0);
-        swap_column(front_cube, back_cube, 0, (cube_size - 1), 1);
         swap_column(front_cube, bottom_cube, 0, 0, 0);
+        swap_column(front_cube, back_cube, 0, (cube_size - 1), 1);
+        swap_column(front_cube, top_cube, 0, 0, 0);
         rotate_clockwise(left_cube);
       }
 
@@ -175,14 +175,14 @@ export default function Timer() {
         swap_column_to_row(left_cube, top_cube, (cube_size - 1), (cube_size - 1), 1);
         swap_column_to_row(left_cube, bottom_cube, (cube_size - 1), 0, 0);
         swap_column_to_row(right_cube, bottom_cube, 0, 0, 1);
-        rotate_anti_clockwise(front_cube);
+        rotate_clockwise(front_cube);
       }
 
       function B() {
-        swap_column_to_row(left_cube, top_cube, 0, 0, 1);
+        swap_column_to_row(right_cube, top_cube, (cube_size-1), 0, 0);
+        swap_column_to_row(right_cube, bottom_cube, (cube_size-1), (cube_size - 1), 1);
         swap_column_to_row(left_cube, bottom_cube, 0, (cube_size - 1), 0);
-        swap_column_to_row(right_cube, bottom_cube, (cube_size - 1), (cube_size - 1), 1);
-        rotate_anti_clockwise(back_cube);
+        rotate_clockwise(back_cube);
       }
 
       top_cube = initializing(w);
@@ -201,12 +201,8 @@ export default function Timer() {
         }
         else if (scramblearray[i] === "B") {
           B()
-          B()
-          B()
         }
         else if (scramblearray[i] === "D") {
-          D()
-          D()
           D()
         }
         else if (scramblearray[i] === "U") {
@@ -216,8 +212,6 @@ export default function Timer() {
           F()
         }
         else if (scramblearray[i]==="R"){
-          R()
-          R()
           R()
         }
         else if (scramblearray[i] === "L`") {
@@ -232,8 +226,12 @@ export default function Timer() {
         }
         else if (scramblearray[i] === "B`") {
           B()
+          B()
+          B()
         }
         else if (scramblearray[i] === "D`") {
+          D()
+          D()
           D()
         }
         else if (scramblearray[i] === "U`") {
@@ -247,6 +245,8 @@ export default function Timer() {
           F()
         }
         else if (scramblearray[i]==="R`"){
+          R()
+          R()
           R()
         }
         else if (scramblearray[i] === "L2") {
@@ -279,6 +279,7 @@ export default function Timer() {
         }
       }
       // print_cube();
+     
       setTopcube(top_cube)
       setFrontcube(front_cube)
       setRightcube(right_cube)
