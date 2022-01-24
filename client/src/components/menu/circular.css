@@ -1,0 +1,12 @@
+.nav-content {
+  font-size: 30px;
+  width: 30px;
+}
+.nav-content span {
+  font-size: 30px;
+  display: flex;
+  width: 30px;
+}
+.nav-content span:hover {
+  cursor: pointer;
+}
