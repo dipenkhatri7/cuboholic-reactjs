@@ -1,14 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,600;1,100;1,300;1,400;1,600;1,700&family=Mulish:ital,wght@0,200;0,300;0,400;1,400;1,500&display=swap");
 nav {
-  padding-left: 5%;
-  padding-right: 2%;
+  padding-left: 45px;
+
   display: flex;
   justify-content: space-between;
   text-align: center;
-  align-items: center;
-  min-height: 8vh;
+  align-items: flex-end;
+  /* min-height: 8vh; */
   width: 100%;
   color: #f2faff;
   z-index: 10;
+  height: 70px;
 }
 a {
   color: #f2faff;
@@ -16,9 +18,10 @@ a {
 }
 .nav-links {
   display: flex;
-  width: 80%;
+  width: 64%;
   justify-content: space-around;
   z-index: 10;
+  font-size: 16.5px;
 }
 .nav-links li {
   display: inline;
@@ -51,21 +54,21 @@ a {
 }
 .loginsignup {
   font-size: large;
-  background-color: #155ed1;
-  border: none;
+  background-color: transparent;
+  border: 1px solid #707070;
+  margin-left: 50px;
   color: white;
-  padding: 1vh 3vw;
-  margin-left: 5vw;
+  padding: 5px 24.5px;
 }
 .loginsignup {
-  border: #23272b;
-  border-radius: 3px;
+  border-radius: 8px;
 }
 .loginsignup:hover {
   cursor: pointer;
 }
 h1 {
-  font-weight: bold;
+  font-size: 30.45px;
+  font-family: "Mulish", sans-serif;
 }
 .burger div {
   width: 25px;

@@ -1,3 +1,7 @@
+.loginContainer {
+  height: 100vh;
+}
+
 .login {
   position: absolute;
   top: 50%;
@@ -7,6 +11,11 @@
   display: flex;
   flex-direction: column;
   z-index: 1;
+}
+#transitionLogin,
+#forgetLogin,
+#newPassowrdLogin {
+  top: 45%;
 }
 .login h1 {
   text-align: center;
@@ -34,10 +43,15 @@
 .sumbit:hover {
   cursor: pointer;
 }
-.login a {
-  text-decoration: underline;
-  cursor: pointer;
-}
+
 .login p {
   text-align: left;
+}
+.login p:hover {
+  cursor: pointer;
+}
+.register:hover,
+.forgetPassword:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

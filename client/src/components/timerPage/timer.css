@@ -1,23 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,600;1,100;1,300;1,400;1,600;1,700&family=Mulish:ital,wght@0,200;0,300;0,400;1,400;1,500&display=swap");
 .timer {
   color: #f2faff;
   position: absolute;
   align-items: center;
   text-align: center;
   justify-content: center;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .time {
   font-weight: bold;
-  font-size: 18vh;
+  font-size: 155.45px;
+  font-family: "Libre Franklin", sans-serif;
+}
+.time-ms {
+  font-size: 74.45px;
 }
 .timerbtn {
   border: none;
   color: #f2faff;
   font-weight: bolder;
-  font-size: 2.5vh;
-  margin: 3vh 2vw;
 }
 .scramble {
   font-size: 3vh;
